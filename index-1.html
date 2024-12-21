@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pengingat Minum Air</title>
+  
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      color: #4CAF50;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .status {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+    .reset-btn {
+      margin-top: 30px;
+      background-color: #f44336;
+    }
+    .reset-btn:hover {
+      background-color: #e53935;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pengingat Minum Air</h1>
+  <p>Target Harian: 2 Liter (2000 ml)</p>
+
+  <p class="status">Sudah diminum: <span id="diminum">0</span> ml</p>
+  <p class="status">Sisa: <span id="sisa">2000</span> ml</p>
+
+  <div>
+    <button onclick="tambahAir(200)">+ 200 ml</button>
+    <button onclick="tambahAir(500)">+ 500 ml</button>
+  </div>
+
+  <button class="reset-btn" onclick="reset()">Reset</button>
+
+  <script>
+    let target = 2000; // Target harian dalam ml
+    let diminum = 0; // Total air yang diminum
+
+    // Fungsi untuk menambah konsumsi air
+    function tambahAir(ml) {
+      diminum += ml;
+      if (diminum >= target) {
+        alert("Selamat! Anda telah mencapai target minum air hari ini!");
+      }
+      updateStatus();
+    }
+
+    // Fungsi untuk mereset konsumsi air
+    function reset() {
+      diminum = 0;
+      updateStatus();
+    }
+
+    // Fungsi untuk memperbarui tampilan status
+    function updateStatus() {
+      document.getElementById("diminum").textContent = diminum;
+      document.getElementById("sisa").textContent = Math.max(target - diminum, 0);
+    }
+  </script>
+</body>
+</html>
